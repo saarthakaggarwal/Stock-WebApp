@@ -1,0 +1,16 @@
+.herobackground{
+    background-color: white;
+    /* font-family: "Gulzar", serif; */
+}
+
+.gulzarfont{
+        font-family: "Gulzar", serif;
+}
+
+.title{
+    font-size: 50px;
+}
+
+.text{
+    font-size: 20px;
+}
