@@ -19,9 +19,7 @@ def index(request):
     second_news_title = second_news["headline"]
     third_news_title = third_news["headline"]
     
-
     context = {
-        "name" : "Saarthak",
         "first_news_title" : first_news_title,
         "second_news_title" : second_news_title,
         "third_news_title" :  third_news_title,
@@ -29,6 +27,13 @@ def index(request):
         "second_news_image" : second_news["image"],
         "third_news_image" : third_news["image"]
     }
+
+    frontpage_companies = ["AAPL", "AMZN", "TSLA", "MSFT"]
+
+    for symbol in frontpage_companies:
+        context[symbol + "_current_price"] = finnhub_client.quote(symbol)["c"]
+        context[symbol + "_price_change"] = finnhub_client.quote(symbol)["dp"]
+
 
     return render(request, "index.html", context)
 

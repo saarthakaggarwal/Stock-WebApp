@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block additionallinks %}<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" />
+{% block additionallinks %}<link rel="stylesheet" href="{% static 'home.css' %}" />
 {% endblock additionallinks %}
 
 {% block title %}Home{% endblock title %}
@@ -11,7 +11,7 @@
 
 {% block body %}
 <div class = "herobackground">
-  <div class="container col-xxl-8 px-4 py-5">
+  <div class="container col-xxl-8 px-4 py-5 h-100">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
       <div class="col-10 col-sm-8 col-lg-6">
         <img src="/static/heroimage.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="1000" height="1000" loading="lazy">
@@ -24,14 +24,21 @@
   </div>
 </div> 
 
-<div class="album py-5 bg-light">
+
+
+
+<div class="album newssection">
+  <div class="px-4 pt-2 my-5 text-center">
+    <h1 class="col-lg-12 fw-bold secondtitle mx-auto">Trending Financial News</h1>
+    <div class="col-lg-12 mx-auto stockt">
+      <hr class="solid widthsetting">
+    </div>
+  </div>
   <div class="container">
-
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <div class="col">
+      <div class="col d-flex align-items-stretch">
         <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+          <img src="{{first_news_image}}" class="card-img-top imageheight" alt="Headline Image">
           <div class="card-body">
             <p class="card-text">{{first_news_title}}</p>
             <div class="d-flex justify-content-between align-items-center">
@@ -43,15 +50,14 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col d-flex align-items-stretch">
         <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+          <img src="{{second_news_image}}" class="card-img-top imageheight" alt="Headline Image">
           <div class="card-body">
-            <p class="card-text">{{second_news_title}}</p>
+            <p class="card-text line-clamp">{{second_news_title}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" class="btn btn-s m btn-outline-secondary">View</button>
                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
               </div>
               <small class="text-muted">9 mins</small>
@@ -59,10 +65,9 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col d-flex align-items-stretch">
         <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+          <img src="{{third_news_image}}" class="card-img-top imageheight" alt="Headline Image">
           <div class="card-body">
             <p class="card-text">{{third_news_title}}</p>
             <div class="d-flex justify-content-between align-items-center">
@@ -79,6 +84,45 @@
   </div>
 </div>
 
+
+
+
+  <div class="container marketing py-5">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row centeritems">
+      <div class="col-lg-12 mx-auto stocktitle">
+        <div class="mb-4">
+          <h6 class="secondtitle fw-bold">Trending Stocks</h6>
+          <!-- Solid divider -->
+          <hr class="solid">
+      </div>
+    </div>
+      <div class="col-lg-3">
+        <img src="{% static 'applelogo.png' %}" class="rounded-circle logoapple" alt="Apple Logo">
+        <h2 class="fw-bold">AAPL</h2>
+        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3">
+        <img src="{% static 'amazonlogo.png' %}" class="rounded-circle logoamzn" alt="Amazon Logo">
+        <h2 class="fw-bold">AMZN</h2>
+        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3">
+        <img src="{% static 'Teslalogo.png' %}" class="rounded-circle logotsla" alt="Tesla Logo">
+        <h2 class="fw-bold">TSLA</h2>
+        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-3">
+        <img src="{% static 'msftlogo.png' %}" class="logomsft" alt="Microsoft Logo">
+        <h2 class="fw-bold">MSFT</h2>
+        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
 
 
 {% endblock body %}

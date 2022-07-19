@@ -14,3 +14,79 @@
 .text{
     font-size: 20px;
 }
+
+.imageheight{
+    height: 237px;
+}
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+
+.secondtitle{
+    font-size: 40px;
+    font-family: "Gulzar", serif;
+}
+
+.centeritems{
+    text-align: center;
+}
+
+.extendbottom{
+    margin-bottom: 10%;
+}
+
+.logoapple{
+    width: 40%;
+    margin-bottom: 10%;
+    border-radius: 0;
+}
+
+.logoamzn{
+    width: 100%;
+    margin-bottom: -15.4%;
+    margin-top: -10%;
+    border-radius: 0;
+
+}
+.logotsla{
+    width: 60%;
+    margin-top: 1%;
+    margin-bottom: 5%;
+    border-radius: 0;
+
+}
+
+.logomsft{
+    width: 39%;
+    margin-top: 4%;
+    margin-bottom: 6.3%;
+    border-radius: 0;
+
+}
+
+.newssection{
+    background-color: beige;
+    padding-bottom: 5%;
+    padding-top: 1%;
+    margin-bottom: 2.5%;
+}
+
+.stocktitle{
+    margin-bottom: 2.5%;
+    font-size: 40px;
+    font-family: "Gulzar", serif;
+}
+
+hr.solid {
+    border-top: 4px solid #6D9886;
+}
+
+.widthsetting{
+    width: 86%;
+    margin-left: auto;
+    margin-right: auto;
+}
