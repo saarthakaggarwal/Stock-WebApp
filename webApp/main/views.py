@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import requests
 import finnhub
+from utils.graphing import test
 
 # Create your views here
 
@@ -11,22 +12,16 @@ def index(request):
     finnhub_client = finnhub.Client(api_key="cb8rlfaad3i0v9a1umlg")
     newsData = finnhub_client.general_news('general', min_id=0)
 
-    first_news = newsData[0]
-    second_news = newsData[1]
-    third_news = newsData[2]
-
-    first_news_title = first_news["headline"]
-    second_news_title = second_news["headline"]
-    third_news_title = third_news["headline"]
-    
     context = {
-        "first_news_title" : first_news_title,
-        "second_news_title" : second_news_title,
-        "third_news_title" :  third_news_title,
-        "first_news_image" : first_news["image"],
-        "second_news_image" : second_news["image"],
-        "third_news_image" : third_news["image"]
     }
+
+    news = ["first_news", "second_news", "third_news"]
+    n = 0
+    for head in news:
+        context[head + "_title"] = newsData[n]["headline"]
+        context[head + "_image"] = newsData[n]["image"]
+        context[head + "_url"] = newsData[n]["url"]
+        n += 1
 
     frontpage_companies = ["AAPL", "AMZN", "TSLA", "MSFT"]
 

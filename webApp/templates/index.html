@@ -43,8 +43,9 @@
             <p class="card-text">{{first_news_title}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <a href="{{first_news_url}}" target="_blank">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                </a>
               </div>
             </div>
           </div>
@@ -57,10 +58,10 @@
             <p class="card-text line-clamp">{{second_news_title}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-s m btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <a href={{second_news_url}} target="_blank">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                </a>
               </div>
-              <small class="text-muted">9 mins</small>
             </div>
           </div>
         </div>
@@ -72,10 +73,10 @@
             <p class="card-text">{{third_news_title}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <a href={{third_news_url}} target="_blank">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                </a>
               </div>
-              <small class="text-muted">9 mins</small>
             </div>
           </div>
         </div>
@@ -101,26 +102,62 @@
       <div class="col-lg-3">
         <img src="{% static 'applelogo.png' %}" class="rounded-circle logoapple" alt="Apple Logo">
         <h2 class="fw-bold">AAPL</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <h5 class = "fw-semibold">% Change:
+        {%if AAPL_price_change >= 0 %}
+          <img src={% static 'greenarrow.png' %} class = "arrows" alt="green up arrow">
+        {%else%}
+          <img src={% static 'redarrow.png' %} alt="green up arrow">
+        {%endif%}
+
+        {{AAPL_price_change}}%
+        </h5>
+        <h5 class = "fw-semibold">Current Price: ${{AAPL_current_price}}</h5>
+        <p><a class="btn btn-secondary" style = "margin-top: 10%;" href="#">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-3">
         <img src="{% static 'amazonlogo.png' %}" class="rounded-circle logoamzn" alt="Amazon Logo">
         <h2 class="fw-bold">AMZN</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <h5 class = "fw-semibold">% Change:
+          {%if AMZN_price_change >= 0 %}
+            <img src={% static 'greenarrow.png' %} class = "arrows" alt="green up arrow">
+          {%else%}
+            <img src={% static 'redarrow.png' %} alt="green up arrow">
+          {%endif%}
+  
+          {{AMZN_price_change}}%
+          </h5>
+          <h5 class = "fw-semibold">Current Price: ${{AAPL_current_price}}</h5>
+        <p><a class="btn btn-secondary" href="#" style = "margin-top: 10%;">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-3">
         <img src="{% static 'Teslalogo.png' %}" class="rounded-circle logotsla" alt="Tesla Logo">
         <h2 class="fw-bold">TSLA</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <h5 class = "fw-semibold">% Change:
+          {%if TSLA_price_change >= 0 %}
+            <img src={% static 'greenarrow.png' %} class = "arrows" alt="green up arrow">
+          {%else%}
+            <img src={% static 'redarrow.png' %} alt="green up arrow">
+          {%endif%}
+  
+          {{TSLA_price_change}}%
+          </h5>
+          <h5 class = "fw-semibold">Current Price: ${{TSLA_current_price}}</h5>
+        <p><a class="btn btn-secondary" href="#" style = "margin-top: 10%;">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-3">
         <img src="{% static 'msftlogo.png' %}" class="logomsft" alt="Microsoft Logo">
         <h2 class="fw-bold">MSFT</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <h5 class = "fw-semibold">% Change:
+          {%if MSFT_price_change >= 0 %}
+            <img src={% static 'greenarrow.png' %} class = "arrows" alt="green up arrow">
+          {%else%}
+            <img src={% static 'redarrow.png' %} alt="green up arrow">
+          {%endif%}
+  
+          {{MSFT_price_change}}%
+          </h5>
+          <h5 class = "fw-semibold">Current Price: ${{MSFT_current_price}}</h5>
+        <p><a class="btn btn-secondary" href="#" style = "margin-top: 10%;">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 
