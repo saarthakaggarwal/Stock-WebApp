@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import requests
 import finnhub
-from utils.graphing import test
+from utils.graphing import test, test2
 
 # Create your views here
 
@@ -12,8 +12,10 @@ def index(request):
     finnhub_client = finnhub.Client(api_key="cb8rlfaad3i0v9a1umlg")
     newsData = finnhub_client.general_news('general', min_id=0)
 
+    plot = test()
     context = {
     }
+    context["plot"] = plot
 
     news = ["first_news", "second_news", "third_news"]
     n = 0

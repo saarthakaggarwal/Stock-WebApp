@@ -126,7 +126,7 @@
   
           {{AMZN_price_change}}%
           </h5>
-          <h5 class = "fw-semibold">Current Price: ${{AAPL_current_price}}</h5>
+          <h5 class = "fw-semibold">Current Price: ${{AMZN_current_price}}</h5>
         <p><a class="btn btn-secondary" href="#" style = "margin-top: 10%;">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-3">
@@ -160,6 +160,14 @@
         <p><a class="btn btn-secondary" href="#" style = "margin-top: 10%;">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
+  </div>
 
+  <div class = "container py-5">
+    <body>
+      {% autoescape off %}
+      {{plot}}
+      {% endautoescape %}
+    </body>
+  </div>
 
 {% endblock body %}
