@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load hello %}
+{% load dicaccess%}
 
 
 {% block additionallinks %}<link rel="stylesheet" href="{% static 'home.css' %}" />
@@ -106,7 +108,7 @@
         {%if AAPL_price_change >= 0 %}
           <img src={% static 'greenarrow.png' %} class = "arrows" alt="green up arrow">
         {%else%}
-          <img src={% static 'redarrow.png' %} alt="green up arrow">
+          <img src={% static 'redarrow.png' %} class = "arrows" alt="red down arrow">
         {%endif%}
 
         {{AAPL_price_change}}%
@@ -121,7 +123,7 @@
           {%if AMZN_price_change >= 0 %}
             <img src={% static 'greenarrow.png' %} class = "arrows" alt="green up arrow">
           {%else%}
-            <img src={% static 'redarrow.png' %} alt="green up arrow">
+            <img src={% static 'redarrow.png' %}  class = "arrows" alt= "red down arrow">
           {%endif%}
   
           {{AMZN_price_change}}%
@@ -136,7 +138,7 @@
           {%if TSLA_price_change >= 0 %}
             <img src={% static 'greenarrow.png' %} class = "arrows" alt="green up arrow">
           {%else%}
-            <img src={% static 'redarrow.png' %} alt="green up arrow">
+            <img src={% static 'redarrow.png' %}  class = "arrows"alt="red down arrow">
           {%endif%}
   
           {{TSLA_price_change}}%
@@ -151,7 +153,7 @@
           {%if MSFT_price_change >= 0 %}
             <img src={% static 'greenarrow.png' %} class = "arrows" alt="green up arrow">
           {%else%}
-            <img src={% static 'redarrow.png' %} alt="green up arrow">
+            <img src={% static 'redarrow.png' %} class = "arrows" alt="red down arrow">
           {%endif%}
   
           {{MSFT_price_change}}%
@@ -163,11 +165,34 @@
   </div>
 
   <div class = "container py-5">
+    <div class="row centeritems">
+      <div class="col-lg-12 mx-auto stocktitle">
+        <div class="mb-4">
+          <h6 class="secondtitle fw-bold">Performance of the S&P 500</h6>
+          <!-- Solid divider -->
+          <hr class="solid">
+        </div>
+      </div>
+    </div
+  </div>
+
+  <div class = "container homeplot">
     <body>
       {% autoescape off %}
       {{plot}}
       {% endautoescape %}
     </body>
+  </div>
+
+
+  <div class="album newssection spynews">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% include 'newsTemplate.html' with news_image=news1|get:"image" news_title=news1|get:"title" news_url=news1|get:"link" only%}
+        {% include 'newsTemplate.html' with news_image=news2|get:"image" news_title=news2|get:"title" news_url=news2|get:"link" only%}
+        {% include 'newsTemplate.html' with news_image=news3|get:"image" news_title=news3|get:"title" news_url=news3|get:"link" only%}
+      </div
+    </div>
   </div>
 
 {% endblock body %}

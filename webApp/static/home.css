@@ -94,3 +94,12 @@ hr.solid {
 .arrows{
     width: 6%;
 }
+
+.homeplot{
+    margin-top: -8%;
+    max-width: 1200px;
+}
+
+.spynews{
+    background-color: white;
+}
