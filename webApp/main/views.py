@@ -5,8 +5,12 @@ import requests
 import finnhub
 from utils.graphing import makePlot, returnnews
 from utils.symbolsearch import symbolexists
+from django.urls import resolve
+from django.shortcuts import redirect
 
 # Create your views here
+
+
 
 def index(request):
 
@@ -17,6 +21,14 @@ def index(request):
     context = {
     }
     
+    try:
+        valid_symbol = request.session['valid_symbol']
+        context["valid_symbol"] = valid_symbol
+        del request.session['valid_symbol']
+    except:
+        context["valid_symbol"] = True
+        pass
+
     context["plot"] = plot
     SNPData = returnnews()
 
@@ -25,7 +37,7 @@ def index(request):
         context["news" + str(j)] = data
         j += 1
 
-    
+ 
 
     news = ["first_news", "second_news", "third_news"]
     n = 0
@@ -53,9 +65,12 @@ def about(request):
 
 
 def searchSymbol(request):
-    
+    global valid_stock
+
+    current_url = resolve(request.path_info).url_name
+
     context = {
-        "name" : "Saarthak"
+        
     }
 
     if request.method == 'POST':
@@ -67,8 +82,9 @@ def searchSymbol(request):
         if symbolcheck:
             return render(request, "searchSymbol.html", context)
         else:
-            return render(request, "errorpage.html", context)
+            request.session['valid_symbol'] = False
+            return redirect(index)
     else:
-        return render(request, "searchSymbol.html", context)
+        return render(request, "index.html", context)
 
  

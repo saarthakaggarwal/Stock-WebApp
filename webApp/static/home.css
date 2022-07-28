@@ -103,3 +103,20 @@ hr.solid {
 .spynews{
     background-color: white;
 }
+
+.errornotif{
+    margin-top: 1%;
+    background-color:white;
+    border-color: #343a40;
+    border-style: solid;
+    border-width: 2.5px;
+    width: 25%;
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
