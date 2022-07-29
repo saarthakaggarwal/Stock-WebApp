@@ -1,9 +1,51 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load symbolinfo %}
 
-{% block additionallinks %}{% endblock additionallinks %}
-{% block title %}{% endblock title %}
+{% block additionallinks %}<link rel="stylesheet" href="{% static 'symbol.css' %}"{% endblock additionallinks %}
+{% block title %}{{symbol}}{% endblock title %}
 
 {% block body %}
-<h1>hello</h1>
+
+<div>
+    <h1 class = "symbol_page_title">{{symbol|get_title}}</h1>
+</div>
+
+<div class="row container informationtable">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <h1>Basic Company Details </h1>
+        <table class="table table-striped table-bordered">
+            <tbody>
+                {% include "tabletemplate.html" %}
+                {% include "tabletemplate.html" %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <h1>Financial Perfomance</h1>
+        <table class="table table-striped table-bordered">
+            <tbody>
+                {% include "tabletemplate.html" %}
+                {% include "tabletemplate.html" %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+<div class="row container informationtable">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <h1>Recommended Actions</h1>
+        <table class="table table-striped table-bordered">
+            <tbody>
+                {% include "tabletemplate.html" %}
+                {% include "tabletemplate.html" %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <h4>graph</h4>
+    </div>
+</div>
+
 
 {% endblock body %}

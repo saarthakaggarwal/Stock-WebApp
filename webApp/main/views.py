@@ -75,9 +75,8 @@ def searchSymbol(request):
 
     if request.method == 'POST':
         searched = request.POST["searched"]
-        context["symbol"] = searched
+        context["symbol"] = searched.upper()
 
-        print(searched)
         symbolcheck = symbolexists(searched)
         if symbolcheck:
             return render(request, "searchSymbol.html", context)
