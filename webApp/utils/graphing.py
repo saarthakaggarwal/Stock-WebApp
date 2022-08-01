@@ -7,8 +7,8 @@ from dash import Dash, dcc, html, Input, Output
 
 
 
-def makePlot():
-    spy = yf.Ticker('SPY')
+def makePlot(symbol):
+    spy = yf.Ticker(symbol)
     hist = spy.history(period='3mo', interval = "1d")
     
 
@@ -28,6 +28,7 @@ def makePlot():
         'yaxis_title': 'Price ($)',
         'height' : 600,
         'paper_bgcolor' : 'rgba(0,0,0,0)',
+         'plot_bgcolor':'rgba(0,0,0,0)'
     }
 
 

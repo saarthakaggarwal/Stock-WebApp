@@ -14,10 +14,10 @@ from django.shortcuts import redirect
 
 def index(request):
 
-    finnhub_client = finnhub.Client(api_key="cb8rlfaad3i0v9a1umlg")
+    finnhub_client = finnhub.Client(api_key="cbiol1iad3i2thcmnhk0")
     newsData = finnhub_client.general_news('general', min_id=0)
 
-    plot = makePlot()
+    plot = makePlot('SPY')
     context = {
     }
     
@@ -79,6 +79,45 @@ def searchSymbol(request):
 
         symbolcheck = symbolexists(searched)
         if symbolcheck:
+            finnhub_client = finnhub.Client(api_key="cbiol1iad3i2thcmnhk0")
+            context["basic_details"] = finnhub_client.company_profile2(symbol=context["symbol"])
+            tempfin = finnhub_client.company_basic_financials(context["symbol"], 'all')["metric"]
+            recotemp = finnhub_client.recommendation_trends('AAPL')[0]
+
+
+            context["plot"] = makePlot(context["symbol"])
+
+
+
+            recommendations = {}
+            financials = {}
+            n=0
+            m=0
+            for key in recotemp:
+                if m > 5:
+                    break
+                else:
+                    recommendations[key] = recotemp[key]
+                m += 1
+
+
+            for key in tempfin:
+                new_text = ''
+                for i, letter in enumerate(key):
+                    if i and letter.isupper():
+                        new_text += ' '
+                    if i == 0:
+                        new_text += letter.upper()
+                    else:
+                        new_text += letter
+                if n > 11:
+                    break
+                else:
+                    n += 1
+                    financials[new_text] = tempfin[key]
+            context["financials"] = financials
+            context["recommendations"] = recommendations
+
             return render(request, "searchSymbol.html", context)
         else:
             request.session['valid_symbol'] = False

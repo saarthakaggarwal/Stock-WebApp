@@ -1,18 +1,40 @@
 .informationtable{
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-left: 5%;
+    padding-right: 5%;
+    
     max-width: inherit;
 }
 
 .symbol_page_title{
     margin-top: 1%;
     background-color:white;
-    font-size: 30px;
+    font-size: 45px;
     font-weight: bold;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     padding-top: 25px;
     padding-bottom: 25px;
+}
+
+.tablestyle{
+    font-weight: light;
+    text-align: center;
+}
+
+.subtitle{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 4%;
+}
+
+.graph{
+    margin-top: -8%;
+}
+
+.imageheight{
+    height: 237px;
 }

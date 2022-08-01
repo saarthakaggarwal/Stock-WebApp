@@ -11,41 +11,82 @@
     <h1 class = "symbol_page_title">{{symbol|get_title}}</h1>
 </div>
 
-<div class="row container informationtable">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <h1>Basic Company Details </h1>
-        <table class="table table-striped table-bordered">
-            <tbody>
-                {% include "tabletemplate.html" %}
-                {% include "tabletemplate.html" %}
-            </tbody>
-        </table>
+
+
+
+<div class="container informationtable py-5">
+    <div class = "row">
+        <div class="table-responsive col-md-6">
+            <h1 class = "subtitle">Basic Company Details</h1>
+            <table class="table table-striped table-bordered tablestyle">
+                <tbody>
+                    <div class = "texttable"></div>
+                    {% for key,value in basic_details.items %}
+                        {% if key != "logo" or key != "weburl" %}
+                        {% include "tabletemplate.html" with left_row=key.capitalize right_row=value only%}
+                        {% elif key == "weburl"%}
+                        <div class = "specialcase">
+                            {% include "tabletemplate.html" with left_row=key.capitalize right_row=value only%}
+                        </div>
+                        {% endif %}
+                    
+                    {% endfor %}
+                    </div>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive col-md-6">
+            <h1 class = "subtitle">Financial Perfomance</h1>
+            <table class="table table-striped table-bordered tablestyle table-responsive">
+                <tbody>
+                    <div class = "texttable"></div>
+                    {% for key,value in financials.items %}
+                        {% include "tabletemplate.html" with left_row=key right_row=value only%}
+                    {% endfor %}
+                    </div>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <h1>Financial Perfomance</h1>
-        <table class="table table-striped table-bordered">
-            <tbody>
-                {% include "tabletemplate.html" %}
-                {% include "tabletemplate.html" %}
-            </tbody>
-        </table>
+</div>
+<div class="container informationtable py-5">
+    <div class = "row">
+        <div class="table-responsive col-md-6">
+            <h1 class = "subtitle">Recommendations</h1>
+            <table class="table table-striped table-bordered tablestyle">
+                <tbody>
+                    <div class = "texttable"></div>
+                    {% for key,value in recommendations.items %}
+                        {% include "tabletemplate.html" with left_row=key.capitalize right_row=value only%}   
+                    {% endfor %}
+                    </div>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <div class = "graph">
+                {% autoescape off %}
+                {{plot}}
+                {% endautoescape %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="album newssection spynews py-5">
+    <div class="container">
+      <h1 class = "subtitle">Company News</h1>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% include 'newsTemplate.html' with news_image=symbol|get_news:"image,0" news_title=symbol|get_news:"title,0" news_url=symbol|get_news:"link,0" only%}
+        {% include 'newsTemplate.html' with news_image=symbol|get_news:"image,1" news_title=symbol|get_news:"title,1" news_url=symbol|get_news:"link,1" only%}
+        {% include 'newsTemplate.html' with news_image=symbol|get_news:"image,2" news_title=symbol|get_news:"title,2" news_url=symbol|get_news:"link,2" only%}
+        {% include 'newsTemplate.html' with news_image=symbol|get_news:"image,3" news_title=symbol|get_news:"title,3" news_url=symbol|get_news:"link,3" only%}
+        {% include 'newsTemplate.html' with news_image=symbol|get_news:"image,4" news_title=symbol|get_news:"title,4" news_url=symbol|get_news:"link,4" only%}
+        {% include 'newsTemplate.html' with news_image=symbol|get_news:"image,5" news_title=symbol|get_news:"title,5" news_url=symbol|get_news:"link,5" only%}
+
+      </div
     </div>
   </div>
-</div>
-<div class="row container informationtable">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <h1>Recommended Actions</h1>
-        <table class="table table-striped table-bordered">
-            <tbody>
-                {% include "tabletemplate.html" %}
-                {% include "tabletemplate.html" %}
-            </tbody>
-        </table>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <h4>graph</h4>
-    </div>
-</div>
 
 
 {% endblock body %}
