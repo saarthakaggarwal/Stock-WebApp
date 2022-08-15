@@ -121,4 +121,11 @@ hr.solid {
     padding-bottom: 25px;
 }
 
+.successmade{
+    padding: 1%;
+    background-color: beige;
+    font-weight: 600;
+    color: green;
+}
+
 html {background-color: #212529}

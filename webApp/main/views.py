@@ -1,3 +1,4 @@
+from email import message
 from http.client import HTTPResponse
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -7,7 +8,9 @@ from utils.graphing import makePlot, returnnews
 from utils.symbolsearch import symbolexists
 from django.urls import resolve
 from django.shortcuts import redirect
-
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
+from django.contrib import messages
 # Create your views here
 
 
@@ -55,6 +58,51 @@ def index(request):
 
 
     return render(request, "index.html", context)
+
+
+
+
+
+
+
+
+
+def handleLogin(request):
+    if request.method == "POST":
+        loginusername = request.POST["loginusername"]
+        loginpassword = request.POST["loginpassword"]
+
+
+
+
+
+
+
+
+def handleSignup(request):
+    if request.method == "POST":
+        signupusername = request.POST["signupusername"]
+        signuppassword = request.POST["signuppassword"]
+        signupemail = request.POST["signupemail"]
+        
+
+
+        myuser = User.objects.create_user(signupusername, signupemail, signuppassword)
+        myuser.save()
+        messages.success(request, "Your account has been successfully made!")
+        return redirect("/")
+    else:
+        return HttpResponse("Error 404: Not Found")
+
+
+
+
+
+
+
+
+
+
 
 def about(request):
     context = {
@@ -126,3 +174,4 @@ def searchSymbol(request):
         return render(request, "index.html", context)
 
  
+
