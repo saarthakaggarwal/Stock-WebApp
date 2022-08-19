@@ -35,17 +35,21 @@
             <li class="nav-item">
               <a class="nav-link" href="/About" style = "color: white;">About</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style = "color: white;">
-                News
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Stock Market</a></li>
-                <li><a class="dropdown-item" href="#">Crypto Currency</a></li>
-                <li><a class="dropdown-item" href="#">Exchange Rates</a></li>
-              </ul>
-            </li>
           </ul>
+              {% if user.is_authenticated%}
+              <form class="d-flex" role="search" method=POST action={% url 'search'%} style = "margin-right:1%;">
+                {% csrf_token %}
+                <input required class="form-control me-2" type="search" placeholder="Search Symbol" aria-label="Search"  name="searched">
+                <button class="btn btn-outline-secondary" type="submit"  style = "color: white; margin-left:auto;">Search</button>
+              </form>
+              <form class="d-flex" role="search" method=POST action="/logout"} >
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary" style = "margin-right:1%;">
+                  Logout
+                </button>
+              </form>
+              <a class="nav-link active" aria-current="page" href="/" style = "margin-left:1%;">Hello {{request.user}}</a> 
+              {% else %}
               <form class="d-flex" role="search" method=POST action={% url 'search'%} >
                 {% csrf_token %}
                 <input required class="form-control me-2" type="search" placeholder="Search Symbol" aria-label="Search"  name="searched">
@@ -57,6 +61,7 @@
               <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#signupModal" style = "margin-left:0.5%;">
                 Signup
               </button>
+              {%endif%}
         </div>
       </div>
     </nav>
@@ -77,15 +82,15 @@
           {% csrf_token %}
           <div class="mb-3">
             <label for="UsernameInput" class="form-label">Username</label>
-            <input type="username" class="form-control" id="UsernameInput" aria-describedby="UsernameInput" name = "signupusername">
+            <input type="username" class="form-control" id="UsernameInput" aria-describedby="UsernameInput" name = "signupusername" required>
           </div>
           <div class="mb-3">
             <label for="InputEmail" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="InputEmail" aria-describedby="InputEmail" name = "signupemail">
+            <input type="email" class="form-control" id="InputEmail" aria-describedby="InputEmail" name = "signupemail" required>
           </div>
           <div class="mb-3">
             <label for="InputPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="InputPassword" name = "signuppassword">
+            <input type="password" class="form-control" id="InputPassword" name = "signuppassword" required>
           </div>
           <button type="submit" class="btn btn-primary d-flex" style = "margin-left: auto;">Submit</button>
         </form>
@@ -106,12 +111,12 @@
         <form action = "/login" method = "POST">
           {% csrf_token %}
           <div class="mb-3">
-            <label for="InputEmail" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="InputEmail" aria-describedby="InputEmail" name = "loginemail">
+            <label for="InputUsername" class="form-label">Username</label>
+            <input type="username" class="form-control" id="loginusername" aria-describedby="InputEmail" name = "loginusername">
           </div>
           <div class="mb-3">
             <label for="InputPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="InputPassword" name = "loginpassword">
+            <input type="password" class="form-control" id="loginpassword" name = "loginpassword">
           </div>
           <button type="submit" class="btn btn-primary d-flex" style = "margin-left: auto;">Submit</button>
         </form>

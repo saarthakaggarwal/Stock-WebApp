@@ -8,7 +8,7 @@ from utils.graphing import makePlot, returnnews
 from utils.symbolsearch import symbolexists
 from django.urls import resolve
 from django.shortcuts import redirect
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 # Create your views here
@@ -72,6 +72,21 @@ def handleLogin(request):
         loginusername = request.POST["loginusername"]
         loginpassword = request.POST["loginpassword"]
 
+        user = authenticate(username=loginusername, password=loginpassword)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You have been successfully logged in!")
+            return redirect("/")
+        else:
+            messages.error(request, "Invalid Credentials")
+            return redirect("/")
+     
+    return HttpResponse("Error 404: Not Found")
+
+def handleLogout(request):
+    logout(request)
+    messages.success(request, "You have been successfully logged out!")
+    return redirect("/")
 
 
 
